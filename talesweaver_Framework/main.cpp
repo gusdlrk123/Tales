@@ -2,10 +2,6 @@
 #include "Config.h"
 #include "CommonFunction.h"
 #include "MainGame.h"
-#include <GdiPlus.h>
-#pragma comment(lib,"gdiplus")
-
-using namespace Gdiplus;
 
 #ifdef UNICODE
 #pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
@@ -17,9 +13,10 @@ using namespace Gdiplus;
 POINT		g_ptMouse;
 HINSTANCE	g_hInstance;
 HWND		g_hWnd;
-LPSTR		g_lpszClass = (LPSTR)L"윈메인의 시작";
+LPSTR		g_lpszClass = (LPSTR)"Tales";
 MainGame	g_mainGame;
 ULONG_PTR	g_gdiPlusToken;
+
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage,
 	WPARAM wParam, LPARAM lParam);
@@ -78,14 +75,6 @@ int APIENTRY WinMain(HINSTANCE _hInstance, HINSTANCE _hPrevInstance,
 	return message.wParam;
 }
 
-void OnPaint(HDC hdc)
-{
-	Graphics G(hdc);
-	Pen p(Color(255, 0, 0, 100), 5);
-
-	G.DrawEllipse(&p, 10, 10, 300, 300);
-}
-
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	HDC hdc;
@@ -112,8 +101,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_PAINT:		// 윈도우 화면이 다시 그려지는 경우 발생하는 메시지
 		hdc = BeginPaint(g_hWnd, &ps);
-		
-		OnPaint(hdc);
 
 		g_mainGame.Render(hdc);
 

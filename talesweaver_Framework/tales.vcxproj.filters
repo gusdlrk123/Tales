@@ -34,6 +34,9 @@
     <Filter Include="2DFrameWork\MainGame">
       <UniqueIdentifier>{b026991b-6559-4116-92df-e3404aab7758}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2DFrameWork\MainGame\GameScene">
+      <UniqueIdentifier>{408bc805-70df-49f4-89f3-09fae110c6af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="ImageManager.cpp">
       <Filter>2DFrameWork\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>2DFrameWork\MainGame\GameScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="ImageManager.h">
       <Filter>2DFrameWork\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>2DFrameWork\MainGame\GameScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

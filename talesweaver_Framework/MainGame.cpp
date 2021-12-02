@@ -1,20 +1,25 @@
 #include "Config.h"
 #include "MainGame.h"
 
+#include "TitleScene.h"
+
 HRESULT MainGame::Init()
 {
 	KEY_MGR->Init();
 	TIMER_MGR->Init();
 	SCENE_MGR->Init();
 
+	SceneManager::GetSingleton()->AddScene(eSceneTag::Title, new TitleScene());
+
 	srand((unsigned int) time(nullptr));
-
 	hTimer = (HANDLE)SetTimer(g_hWnd, 0, 10, NULL);
-
+	
 	mousePosX = 0;
 	mousePosY = 0;
 	clickedMousePosX = 0; 
 	clickedMousePosY = 0;
+	
+	SceneManager::GetSingleton()->ChangeScene(eSceneTag::Title);
 
 	return S_OK;
 }
@@ -32,13 +37,15 @@ void MainGame::Update()
 
 void MainGame::Render(HDC hdc)
 {
-	/*HDC hBackBufferDC = backBuffer->GetMemDC();
+	Graphics G(hdc);
+	Image I(L"./Image/Title.png");
 
-	SCENE_MGR->Render(hBackBufferDC);
 
-	TIMER_MGR->Render(hBackBufferDC);
+	G.DrawImage(&I, 0, 0);
 
-	backBuffer->Render(hdc);*/
+	//SCENE_MGR->Render();
+
+	//TIMER_MGR->Render();
 }
 
 void MainGame::Release()
@@ -59,6 +66,7 @@ void MainGame::Release()
 	SCENE_MGR->ReleaseSingleton();
 
 	KillTimer(g_hWnd, 0);
+
 }
 
 

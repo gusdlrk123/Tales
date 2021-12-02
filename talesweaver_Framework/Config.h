@@ -7,13 +7,16 @@
 #include <map>
 #include <iostream>
 #include <string>
+#include <GdiPlus.h>
+#pragma comment(lib,"gdiplus")
 
+using namespace Gdiplus;
 using namespace std;
 
 #pragma comment(lib, "winmm.lib")
 
-#define WIN_START_POS_X	100
-#define WIN_START_POS_Y	100
+#define WIN_START_POS_X	50
+#define WIN_START_POS_Y	50
 #define WIN_SIZE_X	1024
 #define WIN_SIZE_Y	768
 

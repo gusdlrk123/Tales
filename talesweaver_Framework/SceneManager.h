@@ -3,11 +3,8 @@
 
 enum class eSceneTag
 {
-	None,
-	TestScene,
-	PhysicsScene,
-	TankScene,
-	MapToolScene,
+	Title,
+
 };
 
 class GameEntity;
