@@ -1,17 +1,15 @@
-#include "Config.h"
+#include "header.h"
+#include "define.h"
 #include "MainGame.h"
-
 #include "TitleScene.h"
+#include "variable_extern.h"
 
 HRESULT MainGame::Init()
 {
 	KEY_MGR->Init();
 	TIMER_MGR->Init();
-	SCENE_MGR->Init();
+	SCENE_MGR->Init(eSceneTag::Title, new TitleScene());
 
-	SceneManager::GetSingleton()->AddScene(eSceneTag::Title, new TitleScene());
-
-	srand((unsigned int) time(nullptr));
 	hTimer = (HANDLE)SetTimer(g_hWnd, 0, 10, NULL);
 	
 	mousePosX = 0;
@@ -19,6 +17,12 @@ HRESULT MainGame::Init()
 	clickedMousePosX = 0; 
 	clickedMousePosY = 0;
 	
+	HDC hdc = GetDC(g_hWnd); 
+	backBuffer = CreateCompatibleDC(hdc);
+	hBitmap = CreateCompatibleBitmap(hdc, WIN_SIZE_X, WIN_SIZE_Y);
+	SelectObject(backBuffer, hBitmap);
+	ReleaseDC(g_hWnd, hdc);
+
 	SceneManager::GetSingleton()->ChangeScene(eSceneTag::Title);
 
 	return S_OK;
@@ -30,22 +34,21 @@ void MainGame::Update()
 
 	SCENE_MGR->Update();
 
-	KEY_MGR->Update();
-
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
 void MainGame::Render(HDC hdc)
 {
-	Graphics G(hdc);
-	Image I(L"./Image/Title.png");
+	// Clear
+	PatBlt(backBuffer, 0, 0, WIN_SIZE_X, WIN_SIZE_Y, WHITENESS);
 
+	// Draw next frame
+	SCENE_MGR->Render(backBuffer);
 
-	G.DrawImage(&I, 0, 0);
+	TIMER_MGR->Render(backBuffer);
 
-	//SCENE_MGR->Render();
-
-	//TIMER_MGR->Render();
+	// Copy next frame to hdc
+	BitBlt(hdc, 0, 0, WIN_SIZE_X, WIN_SIZE_Y, backBuffer, 0, 0, SRCCOPY);
 }
 
 void MainGame::Release()
@@ -55,6 +58,8 @@ void MainGame::Release()
 	IMG_MGR->Release();
 	IMG_MGR->ReleaseSingleton();
 	*/
+	ReleaseDC(g_hWnd, backBuffer);
+	DeleteObject(hBitmap);
 
 	TIMER_MGR->Release();
 	TIMER_MGR->ReleaseSingleton();

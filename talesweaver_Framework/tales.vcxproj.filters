@@ -72,6 +72,9 @@
     <ClCompile Include="TitleScene.cpp">
       <Filter>2DFrameWork\MainGame\GameScene</Filter>
     </ClCompile>
+    <ClCompile Include="variable_extern.cpp">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KeyManager.h">
@@ -82,12 +85,6 @@
     </ClInclude>
     <ClInclude Include="TimerManager.h">
       <Filter>2DFrameWork\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CommonFunction.h">
-      <Filter>2DFrameWork\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Config.h">
-      <Filter>2DFrameWork\Utility</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>2DFrameWork\GameObject</Filter>
@@ -112,6 +109,21 @@
     </ClInclude>
     <ClInclude Include="TitleScene.h">
       <Filter>2DFrameWork\MainGame\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="header.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonFunction.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="variable_global.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="variable_extern.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

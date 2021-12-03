@@ -1,10 +1,18 @@
 #pragma once
 #include "GameEntity.h"
-#include "Config.h"
+
 
 class TitleScene : public GameEntity
 {
 private:
+	struct tagBtnInfo
+	{
+		RECT rc;
+		POINT pos;
+	};
+private:
+	tagBtnInfo mStartBtn;
+	tagBtnInfo mQuitBtn;
 
 public:
 	virtual HRESULT Init();

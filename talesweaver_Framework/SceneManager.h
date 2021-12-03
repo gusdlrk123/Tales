@@ -1,10 +1,13 @@
 #pragma once
+#include "header.h"
+#include "define.h"
 #include "Singleton.h"
+
+using namespace std;
 
 enum class eSceneTag
 {
 	Title,
-
 };
 
 class GameEntity;
@@ -19,12 +22,11 @@ public:
 	static GameEntity* readyScene;		// ÁØºñ ÁßÀÎ ¾À
 	static GameEntity* loadingScene;	// ·Îµù ¾À
 
-	void Init();
+	void Init(eSceneTag tag, GameEntity* scene);
 	void Release();
 	void Update();
 	void Render(HDC hdc);
 
-	void AddScene(eSceneTag tag, GameEntity* scene);
 	void AddLoadingScene(eSceneTag tag, GameEntity* scene);
 
 	HRESULT ChangeScene(eSceneTag tag);

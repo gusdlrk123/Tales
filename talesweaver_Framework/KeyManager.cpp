@@ -1,4 +1,3 @@
-#include "Config.h"
 #include "KeyManager.h"
 
 void KeyManager::Init()
@@ -14,18 +13,6 @@ void KeyManager::Release()
 {
 }
 
-void KeyManager::Update()
-{
-	for (int i = 0; i < KEY_MAX_COUNT; i++)
-	{
-		if (keyUp[i] && keyDown[i])
-		{
-			if (GetAsyncKeyState(i) & 0x8000) { keyUp[i] = false; }
-			else { keyDown[i] = false; }
-		}
-	}
-}
-
 bool KeyManager::IsOnceKeyDown(int key)
 {
 	if (GetAsyncKeyState(key) & 0x8000)
@@ -35,28 +22,38 @@ bool KeyManager::IsOnceKeyDown(int key)
 			keyDown[key] = true;
 			return true;
 		}
-		else if (keyDown[key] && keyUp[key]) { return true; }
+	}
+	else
+	{
+		keyDown[key] = false;
 	}
 	return false;
 }
 
 bool KeyManager::IsOnceKeyUp(int key)
 {
-	if ((GetAsyncKeyState(key) & 0x8000) == false)
+	if (GetAsyncKeyState(key) & 0x8000)
+	{
+		keyUp[key] = false;
+	}
+	else
 	{
 		if (keyUp[key] == false)
 		{
 			keyUp[key] = true;
 			return true;
 		}
-		else if (keyUp[key] && keyDown[key]) { return true; }
 	}
+
 	return false;
 }
 
 bool KeyManager::IsStayKeyDown(int key)
 {
-	if (GetAsyncKeyState(key) & 0x8001) { return true; }
-
+	static time_t currTime;
+	if (GetAsyncKeyState(key) & 0x8001)
+	{
+		return true;
+	}
 	return false;
 }

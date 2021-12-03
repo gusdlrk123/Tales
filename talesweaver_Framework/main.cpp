@@ -1,5 +1,5 @@
-
-#include "Config.h"
+#include "header.h"
+#include "define.h"
 #include "CommonFunction.h"
 #include "MainGame.h"
 
@@ -9,14 +9,8 @@
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 #endif
 
-// 전역변수
-POINT		g_ptMouse;
-HINSTANCE	g_hInstance;
-HWND		g_hWnd;
 LPSTR		g_lpszClass = (LPSTR)"Tales";
 MainGame	g_mainGame;
-ULONG_PTR	g_gdiPlusToken;
-
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage,
 	WPARAM wParam, LPARAM lParam);
@@ -106,6 +100,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 
 		EndPaint(g_hWnd, &ps);
 		break;
+	case WM_SIZE:
+		SetWindowSize(WIN_START_POS_X, WIN_START_POS_Y,
+			WIN_SIZE_X, WIN_SIZE_Y);
+		break;
+	/*case WM_GETMINMAXINFO:
+		((LPMINMAXINFO)lParam)->ptMinTrackSize.x = WIN_SIZE_X;
+		((LPMINMAXINFO)lParam)->ptMinTrackSize.y = WIN_SIZE_Y;
+		((LPMINMAXINFO)lParam)->ptMaxTrackSize.x = WIN_SIZE_X;
+		((LPMINMAXINFO)lParam)->ptMaxTrackSize.y = WIN_SIZE_Y;
+		break;*/
 	case WM_DESTROY:	// 닫기 버튼 메시지처리 (프로그램 종료)
 		PostQuitMessage(0);
 		break;

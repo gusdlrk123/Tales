@@ -1,6 +1,8 @@
 #pragma once
-#include "Config.h"
+#include "header.h"
+#include "define.h"
 #include <math.h>
+#include "variable_extern.h"
 
 inline float GetDistance(const POINTFLOAT& pos1, const POINTFLOAT& pos2)
 {

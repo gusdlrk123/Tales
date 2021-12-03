@@ -1,4 +1,5 @@
-#include "Config.h"
+#include "header.h"
+#include "define.h"
 #include "TimerManager.h"
 #include "Timer.h"
 

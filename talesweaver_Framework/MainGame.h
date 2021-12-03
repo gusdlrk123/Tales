@@ -12,7 +12,8 @@ private:
 	int clickedMousePosX;
 	int clickedMousePosY;
 
-	//Image* backBuffer;
+	HDC backBuffer;
+	HBITMAP hBitmap;
 
 public:
 	HRESULT Init();

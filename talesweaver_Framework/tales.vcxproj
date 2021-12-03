@@ -150,12 +150,14 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TimerManager.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="variable_extern.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFunction.h" />
-    <ClInclude Include="Config.h" />
+    <ClInclude Include="define.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="header.h" />
     <ClInclude Include="Image_.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="KeyManager.h" />
@@ -165,6 +167,8 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TimerManager.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="variable_global.h" />
+    <ClInclude Include="variable_extern.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

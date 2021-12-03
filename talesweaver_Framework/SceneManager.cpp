@@ -1,4 +1,5 @@
-#include "Config.h"
+#include "header.h"
+#include "define.h"
 #include "SceneManager.h"
 #include "GameEntity.h"
 
@@ -19,8 +20,16 @@ DWORD CALLBACK LoadingThread(LPVOID pvParam)
 	return 0;
 }
 
-void SceneManager::Init()
+void SceneManager::Init(eSceneTag tag, GameEntity* scene)
 {
+	if (scene == nullptr)	return;
+
+	if (mapScenes.find(tag) != mapScenes.end())
+	{
+		return;
+	}
+
+	mapScenes.insert(pair<eSceneTag, GameEntity*>(tag, scene));
 }
 
 void SceneManager::Release()
@@ -37,19 +46,6 @@ void SceneManager::Render(HDC hdc)
 {
 	if (currScene)
 		currScene->Render(hdc);
-}
-
-void SceneManager::AddScene(eSceneTag tag, GameEntity* scene)
-{
-	if (scene == nullptr)	return;
-
-	if (mapScenes.find(tag) != mapScenes.end())
-	{
-		return;
-	}
-
-	mapScenes.insert(pair<eSceneTag, GameEntity*>(tag, scene));
-
 }
 
 void SceneManager::AddLoadingScene(eSceneTag tag, GameEntity* scene)

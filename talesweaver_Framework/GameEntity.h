@@ -1,5 +1,6 @@
 #pragma once
-#include "Config.h"
+#include "header.h"
+#include "define.h"
 
 class GameEntity
 {
